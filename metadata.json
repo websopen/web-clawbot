@@ -1,0 +1,5 @@
+{
+  "name": "telegram-telethon-asistente",
+  "description": "Una aplicación web para gestionar aspectos de la vida interior y exterior, integrada con Telegram para una experiencia de usuario fluida y personalizada.",
+  "requestFramePermissions": []
+}
