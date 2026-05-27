@@ -390,7 +390,14 @@ export interface CuratedTweet {
 export async function fetchCuratedVideos(): Promise<CuratedVideo[]> {
     try {
         // Usar endpoint de top rated desde DB
-        const response = await fetch(`${API_BASE_URL}/api/curated/top/videos?limit=10`);
+        const cacheBuster = new Date().getTime();
+        const response = await fetch(`${API_BASE_URL}/api/curated/top/videos?limit=10&_t=${cacheBuster}`, {
+            headers: {
+                'Cache-Control': 'no-cache, no-store, must-revalidate',
+                'Pragma': 'no-cache',
+                'Expires': '0'
+            }
+        });
         if (!response.ok) return [];
         const data = await response.json();
         return data.success ? data.data : [];
@@ -403,7 +410,14 @@ export async function fetchCuratedVideos(): Promise<CuratedVideo[]> {
 export async function fetchCuratedTweets(): Promise<CuratedTweet[]> {
     try {
         // Usar endpoint de top rated desde DB
-        const response = await fetch(`${API_BASE_URL}/api/curated/top/tweets?limit=10`);
+        const cacheBuster = new Date().getTime();
+        const response = await fetch(`${API_BASE_URL}/api/curated/top/tweets?limit=10&_t=${cacheBuster}`, {
+            headers: {
+                'Cache-Control': 'no-cache, no-store, must-revalidate',
+                'Pragma': 'no-cache',
+                'Expires': '0'
+            }
+        });
         if (!response.ok) return [];
         const data = await response.json();
         return data.success ? data.data : [];
